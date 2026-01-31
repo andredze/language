@@ -98,10 +98,9 @@ LangErr_t SrcParamsSeparator(LangCtx_t* lang_ctx, TreeNode_t* node);
 
 
 //==========================================================================================
-
 const OperatorCase_t OP_CASES_TABLE[] =
 {
-//                      code,         repeat_times,         name                  ast_format                asm_function    asm_name src_function
+//                      code,         repeat_times,         name                  ast_format                asm_function        asm_name    src_function
     SET_OP_CASE_(OP_NONE                ,   1,   L""                            , L""                , NULL                   , L""     , NULL              ),
     SET_OP_CASE_(OP_CMD_SEPARATOR       ,   1,   L"ЗАМОЛЧИ"                     , L"_END_STATEMENT_" , AssembleCmdSeparator   , L""     , SrcCmdSeparator   ),
     SET_OP_CASE_(OP_BRACKET_OPEN        ,   1,   L"("                           , L""                , NULL                   , L""     , NULL              ),

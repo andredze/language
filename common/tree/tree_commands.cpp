@@ -86,7 +86,7 @@ TreeErr_t TreeCtor(Tree_t* tree)
 {
     if (tree == NULL)
     {
-        PRINTERR("Tree is a nullptr");
+        PRINTERR(L"Tree is a nullptr");
         return TREE_NULL;
     }
 
@@ -94,7 +94,7 @@ TreeErr_t TreeCtor(Tree_t* tree)
 
     if (tree->dummy == NULL)
     {
-        PRINTERR("Dummy construction failed");
+        PRINTERR(L"Dummy construction failed");
         return TREE_NULL;
     }
 

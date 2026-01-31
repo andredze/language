@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 
     if (argc == 1)
     {
-        WPRINTERR("Expected code input file through terminal args");
+        WPRINTERR(L"Expected code input file through terminal args");
         return EXIT_FAILURE;
     }
 
@@ -25,6 +25,8 @@ int main(int argc, char* argv[])
 
     if (LangCtxCtor(&lang_ctx))
         return EXIT_FAILURE;
+
+    WDPRINTF(L"tree_ptr = %p\n", lang_ctx.tree);
 
     do {
         if (TreeReadInputData(&lang_ctx, argv[1]))

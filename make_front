@@ -44,6 +44,7 @@ FRONTEND_SOURCES := frontend/src/main.cpp \
 
 LOGS := log/*
 
+
 FRONTEND_OBJECTS := $(FRONTEND_SOURCES:.cpp=.o)
 
 FRONTEND_TARGET := front
@@ -86,3 +87,47 @@ front_rebuild: front_clean front
 rebuild: clean all
 
 .PHONY: all clean rebuild front front_clean dlogs front_rebuild
+
+
+# FRONTEND_OBJECTS := $(FRONTEND_SOURCES:.cpp=.o)
+#
+# FRONTEND_TARGET := front
+#
+# ifdef DEBUG
+# CXXFLAGS += -D TREE_DEBUG -D STACK_DEBUG -D DEBUG
+# endif
+#
+# all: front
+#
+# front: $(FRONTEND_TARGET)
+#
+# $(FRONTEND_TARGET): $(FRONTEND_OBJECTS)
+# 	$(CXX) $(CXXFLAGS) $(FRONTEND_OBJECTS) -o $(FRONTEND_TARGET)
+#
+# frontend/%.o: frontend/%.cpp
+# 	$(CXX) $(CXXFLAGS) $(FRONTEND_INCLUDES) -c $< -o $@
+#
+# common/%.o: common/%.cpp
+# 	$(CXX) $(CXXFLAGS) $(FRONTEND_INCLUDES) -c $< -o $@
+#
+# %.o: %.cpp
+# 	@case $< in \
+# 		frontend/src/*) \
+# 			$(CXX) $(CXXFLAGS) $(FRONTEND_INCLUDES) -c $< -o $@ ;; \
+# 		common/*) \
+# 			$(CXX) $(CXXFLAGS) -I common -c $< -o $@ ;; \
+# 	esac
+#
+# front_clean:
+# 	rm -f $(FRONTEND_OBJECTS) $(FRONTEND_TARGET)
+#
+# clean: front_clean
+#
+# dlogs:
+# 	rm -rf $(LOGS)
+#
+# front_rebuild: front_clean front
+#
+# rebuild: clean all
+#
+# .PHONY: all clean rebuild front front_clean dlogs front_rebuild

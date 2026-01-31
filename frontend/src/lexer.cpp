@@ -246,7 +246,7 @@ static LangErr_t ProcessNumberTokenCase(LangCtx_t* lang_ctx, bool* do_continue)
     if ((*lang_ctx->cur_symbol_ptr != L'-') && !isdigit(*lang_ctx->cur_symbol_ptr))
         return LANG_SUCCESS;
 
-    if (*lang_ctx->cur_symbol_ptr != L'-' && !isdigit(*lang_ctx->cur_symbol_ptr++))
+    if (*lang_ctx->cur_symbol_ptr == L'-' && !isdigit(*(lang_ctx->cur_symbol_ptr + 1)))
     {
         SET_LEXER_ERROR_(LANG_LEXER_SYNTAX_ERROR, NULL,
                          L"Invalid sequence: minus should be followed with a number");

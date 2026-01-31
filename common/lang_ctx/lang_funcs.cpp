@@ -268,8 +268,12 @@ LangErr_t LangCtxCtor(LangCtx_t* lang_ctx)
         return LANG_TREE_ERROR;
     }
 
+    WDPRINTF(L"tree logfile opening\n");
+
     if (TreeOpenLogFile(lang_ctx))
         return LANG_TREE_ERROR;
+
+    WDPRINTF(L"tree_ptr = %p\n", lang_ctx->tree);
 
     return LANG_SUCCESS;
 }
