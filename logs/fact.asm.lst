@@ -1,96 +1,100 @@
 addr	cmd			code	value
 
-[0002]	JMP :Факториал_end	13  	0   
-[0004]	PUSH 1    	1   	1   
+[0002]	PUSH 2    	1   	2   
+[0004]	POPR RGX  	21  	0   
 [0006]	PUSHR RGX 	20  	0   
-[0008]	PUSH 1    	1   	1   
-[0009]	ADD       	6   
-[0011]	POPR RBX  	21  	0   
-[0013]	POPM [RBX] 	23  	0   
-[0015]	PUSH 1    	1   	1   
-[0017]	PUSHR RGX 	20  	0   
-[0019]	PUSH 2    	1   	2   
-[0020]	ADD       	6   
-[0022]	POPR RBX  	21  	0   
-[0024]	POPM [RBX] 	23  	0   
-[0026]	PUSHR RGX 	20  	0   
-[0028]	PUSH 0    	1   	0   
-[0029]	ADD       	6   
-[0031]	POPR RBX  	21  	0   
-[0033]	PUSHM [RBX] 	22  	0   
-[0035]	PUSHR RGX 	20  	0   
-[0037]	PUSH 2    	1   	2   
-[0038]	ADD       	6   
-[0040]	POPR RBX  	21  	0   
-[0042]	PUSHM [RBX] 	22  	0   
-[0043]	SUB       	7   
-[0045]	PUSH 0    	1   	0   
-[0047]	JBE :while_end_0	15  	0   
-[0049]	PUSHR RGX 	20  	0   
-[0051]	PUSH 2    	1   	2   
-[0052]	ADD       	6   
-[0054]	POPR RBX  	21  	0   
-[0056]	PUSHM [RBX] 	22  	0   
-[0058]	PUSH 1    	1   	1   
-[0059]	ADD       	6   
-[0061]	PUSHR RGX 	20  	0   
-[0063]	PUSH 2    	1   	2   
-[0064]	ADD       	6   
-[0066]	POPR RBX  	21  	0   
-[0068]	POPM [RBX] 	23  	0   
-[0070]	PUSHR RGX 	20  	0   
-[0072]	PUSH 1    	1   	1   
-[0073]	ADD       	6   
-[0075]	POPR RBX  	21  	0   
-[0077]	PUSHM [RBX] 	22  	0   
-[0079]	PUSHR RGX 	20  	0   
-[0081]	PUSH 2    	1   	2   
-[0082]	ADD       	6   
-[0084]	POPR RBX  	21  	0   
-[0086]	PUSHM [RBX] 	22  	0   
-[0087]	MUL       	8   
-[0089]	PUSHR RGX 	20  	0   
-[0091]	PUSH 1    	1   	1   
-[0092]	ADD       	6   
-[0094]	POPR RBX  	21  	0   
-[0096]	POPM [RBX] 	23  	0   
-[0098]	JMP :while_start_0	13  	0   
-[0100]	PUSHR RGX 	20  	0   
-[0102]	PUSH 1    	1   	1   
-[0103]	ADD       	6   
-[0105]	POPR RBX  	21  	0   
-[0107]	PUSHM [RBX] 	22  	0   
-[0109]	PUSHR RGX 	20  	0   
-[0111]	POPR RHX  	21  	0   
-[0113]	POPR RAX  	21  	0   
-[0115]	POPR RGX  	21  	0   
-[0116]	RET       	5   
-[0117]	IN        	3   
-[0119]	PUSH 0    	1   	0   
-[0121]	POPR RBX  	21  	0   
-[0123]	POPM [RBX] 	23  	0   
-[0125]	PUSHR RGX 	20  	0   
-[0127]	PUSHR RHX 	20  	0   
-[0129]	POPR RGX  	21  	0   
-[0131]	PUSHR RHX 	20  	0   
-[0133]	PUSH 3    	1   	3   
-[0134]	ADD       	6   
-[0136]	POPR RHX  	21  	0   
-[0138]	PUSH 0    	1   	0   
-[0140]	POPR RBX  	21  	0   
-[0142]	PUSHM [RBX] 	22  	0   
-[0144]	PUSHR RGX 	20  	0   
+[0008]	POPR RHX  	21  	0   
+[0010]	JMP :Факториал_end	13  	0   
+[0012]	PUSH 1    	1   	1   
+[0014]	PUSHR RGX 	20  	0   
+[0016]	PUSH 1    	1   	1   
+[0017]	ADD       	6   
+[0019]	POPR RBX  	21  	0   
+[0021]	POPM [RBX] 	23  	0   
+[0023]	PUSH 1    	1   	1   
+[0025]	PUSHR RGX 	20  	0   
+[0027]	PUSH 2    	1   	2   
+[0028]	ADD       	6   
+[0030]	POPR RBX  	21  	0   
+[0032]	POPM [RBX] 	23  	0   
+[0034]	PUSHR RGX 	20  	0   
+[0036]	PUSH 0    	1   	0   
+[0037]	ADD       	6   
+[0039]	POPR RBX  	21  	0   
+[0041]	PUSHM [RBX] 	22  	0   
+[0043]	PUSHR RGX 	20  	0   
+[0045]	PUSH 2    	1   	2   
+[0046]	ADD       	6   
+[0048]	POPR RBX  	21  	0   
+[0050]	PUSHM [RBX] 	22  	0   
+[0051]	SUB       	7   
+[0053]	PUSH 0    	1   	0   
+[0055]	JBE :while_end_0	15  	0   
+[0057]	PUSHR RGX 	20  	0   
+[0059]	PUSH 2    	1   	2   
+[0060]	ADD       	6   
+[0062]	POPR RBX  	21  	0   
+[0064]	PUSHM [RBX] 	22  	0   
+[0066]	PUSH 1    	1   	1   
+[0067]	ADD       	6   
+[0069]	PUSHR RGX 	20  	0   
+[0071]	PUSH 2    	1   	2   
+[0072]	ADD       	6   
+[0074]	POPR RBX  	21  	0   
+[0076]	POPM [RBX] 	23  	0   
+[0078]	PUSHR RGX 	20  	0   
+[0080]	PUSH 1    	1   	1   
+[0081]	ADD       	6   
+[0083]	POPR RBX  	21  	0   
+[0085]	PUSHM [RBX] 	22  	0   
+[0087]	PUSHR RGX 	20  	0   
+[0089]	PUSH 2    	1   	2   
+[0090]	ADD       	6   
+[0092]	POPR RBX  	21  	0   
+[0094]	PUSHM [RBX] 	22  	0   
+[0095]	MUL       	8   
+[0097]	PUSHR RGX 	20  	0   
+[0099]	PUSH 1    	1   	1   
+[0100]	ADD       	6   
+[0102]	POPR RBX  	21  	0   
+[0104]	POPM [RBX] 	23  	0   
+[0106]	JMP :while_start_0	13  	0   
+[0108]	PUSHR RGX 	20  	0   
+[0110]	PUSH 1    	1   	1   
+[0111]	ADD       	6   
+[0113]	POPR RBX  	21  	0   
+[0115]	PUSHM [RBX] 	22  	0   
+[0117]	PUSHR RGX 	20  	0   
+[0119]	POPR RHX  	21  	0   
+[0121]	POPR RAX  	21  	0   
+[0123]	POPR RGX  	21  	0   
+[0124]	RET       	5   
+[0125]	IN        	3   
+[0127]	PUSH 0    	1   	0   
+[0129]	POPR RBX  	21  	0   
+[0131]	POPM [RBX] 	23  	0   
+[0133]	PUSHR RGX 	20  	0   
+[0135]	PUSHR RHX 	20  	0   
+[0137]	POPR RGX  	21  	0   
+[0139]	PUSHR RHX 	20  	0   
+[0141]	PUSH 3    	1   	3   
+[0142]	ADD       	6   
+[0144]	POPR RHX  	21  	0   
 [0146]	PUSH 0    	1   	0   
-[0147]	ADD       	6   
-[0149]	POPR RBX  	21  	0   
-[0151]	POPM [RBX] 	23  	0   
-[0153]	CALL :Факториал	4   	0   
-[0155]	PUSHR RAX 	20  	0   
-[0157]	PUSH 1    	1   	1   
-[0159]	POPR RBX  	21  	0   
-[0161]	POPM [RBX] 	23  	0   
-[0163]	PUSH 1    	1   	1   
-[0165]	POPR RBX  	21  	0   
-[0167]	PUSHM [RBX] 	22  	0   
-[0168]	OUT       	2   
-[0169]	HLT       	0   
+[0148]	POPR RBX  	21  	0   
+[0150]	PUSHM [RBX] 	22  	0   
+[0152]	PUSHR RGX 	20  	0   
+[0154]	PUSH 0    	1   	0   
+[0155]	ADD       	6   
+[0157]	POPR RBX  	21  	0   
+[0159]	POPM [RBX] 	23  	0   
+[0161]	CALL :Факториал	4   	0   
+[0163]	PUSHR RAX 	20  	0   
+[0165]	PUSH 1    	1   	1   
+[0167]	POPR RBX  	21  	0   
+[0169]	POPM [RBX] 	23  	0   
+[0171]	PUSH 1    	1   	1   
+[0173]	POPR RBX  	21  	0   
+[0175]	PUSHM [RBX] 	22  	0   
+[0176]	OUT       	2   
+[0177]	HLT       	0   

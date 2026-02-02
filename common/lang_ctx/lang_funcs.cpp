@@ -666,6 +666,25 @@ LangErr_t LangGetIdData(IdTable_t* id_table, size_t index, IdData_t* id_data)
 
 //==========================================================================================
 
+size_t LangIdTableCountVars(IdTable_t* id_table)
+{
+    assert(id_table);
+
+    size_t global_vars_count = 0;
+
+    for (size_t i = 0; i < id_table->size; i++)
+    {
+        if (id_table->data[i].type == ID_TYPE_VARIABLE)
+        {
+            global_vars_count++;
+        }
+    }
+
+    return global_vars_count;
+}
+
+//==========================================================================================
+
 LangErr_t LangFuncCallRightArgs(LangCtx_t* lang_ctx, size_t func_id_index, int args_count)
 {
     assert(lang_ctx);

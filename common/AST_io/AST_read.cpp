@@ -5,6 +5,7 @@
 static void SkipSpaces(wchar_t* buffer, ssize_t* pos);
 static int  SkipLetter(wchar_t* buffer, ssize_t* pos, wchar_t letter);
 static void ReadIdTable(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos);
+static LangErr_t ReadGlobalsCount(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos);
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 
@@ -44,6 +45,11 @@ LangErr_t ASTReadData(LangCtx_t* lang_ctx, char* ast_file_path)
         free(buffer);
         return LANG_TREE_ERROR;
     }
+    if (ReadGlobalsCount(lang_ctx, buffer, &i))
+    {
+        free(buffer);
+        return LANG_TREE_ERROR;
+    }
 
     ReadIdTable(lang_ctx, buffer, &i);
 
@@ -55,6 +61,28 @@ LangErr_t ASTReadData(LangCtx_t* lang_ctx, char* ast_file_path)
 }
 
 //==========================================================================================
+
+static LangErr_t ReadGlobalsCount(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos)
+{
+    assert(lang_ctx);
+    assert(buffer);
+    assert(pos);
+
+    int symbols_count = 0;
+
+    if (swscanf(&buffer[*pos], L" global variables: %zu\n%n",
+                &lang_ctx->global_vars_count, &symbols_count) != 1)
+    {
+        WPRINTERR(L"Error: no global vars count in AST\n");
+        return LANG_WRONG_AST_FORMAT;
+    }
+
+    *pos = *pos + symbols_count;
+
+    return LANG_SUCCESS;
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————
 
 static bool ReadIdData(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos);
 

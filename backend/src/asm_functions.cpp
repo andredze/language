@@ -1,6 +1,8 @@
 #include "op_cases.h"
 #include "lang_funcs.h"
 
+// сдвинуть rhx в самом начале под все переменные
+
 //——————————————————————————————————————————————————————————————————————————————————————————
 
 #define _DSL_DEFINE_
@@ -499,29 +501,28 @@ LangErr_t AssembleParamsSeparator(LangCtx_t* lang_ctx, TreeNode_t* node)
     assert(node);
 
     ASM_VERIFY_(IS_OPERATOR_(node, OP_PARAMS_SEPARATOR));
-    ASM_VERIFY_(node->left);
 
     LangErr_t error = LANG_SUCCESS;
-
-    if ((error = AssembleNode(lang_ctx, node->left)))
-        return error;
-
-    if (lang_ctx->assembling_args)
-    {
-        AssembleArgument(lang_ctx);
-    }
 
     if (node->right)
     {
         if ((error = AssembleNode(lang_ctx, node->right)))
             return error;
 
-        if (lang_ctx->assembling_args && !IS_OPERATOR_(node->right, OP_PARAMS_SEPARATOR))
+        if (lang_ctx->assembling_args)
         {
             AssembleArgument(lang_ctx);
         }
-        else if (IS_VAR_DECL_(node->right))
-            lang_ctx->params_count++;
+    }
+    if (node->left)
+    {
+        if ((error = AssembleNode(lang_ctx, node->left)))
+            return error;
+
+        if (lang_ctx->assembling_args && !IS_OPERATOR_(node->left, OP_PARAMS_SEPARATOR))
+        {
+            AssembleArgument(lang_ctx);
+        }
     }
 
     return LANG_SUCCESS;

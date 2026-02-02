@@ -1,0 +1,9 @@
+0) fix: func call args and func params наоборот порядок
+    + какая то хуита в целом когда вызов функции внутри функции
+    (мб если сделать пункты 1 и 2 станет понятнее)
+1) asm -> push [AX + 5], pop [BX - 2], push AX, push 7
+2) asm -> AX, BX, CX, SP, BP
+3) clean code
+4) syntax errors
+5) clean debug info
+6) dump processor clean

@@ -1,4 +1,5 @@
 #include "AST_write.h"
+#include "lang_funcs.h"
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 
@@ -28,6 +29,8 @@ LangErr_t ASTWriteData(LangCtx_t* lang_ctx)
     ASTWriteNode(lang_ctx, lang_ctx->tree.dummy->right, fp, 0);
 
     fwprintf(fp, L"\n\n");
+
+    fwprintf(fp, L"global variables: %zu\n", LangIdTableCountVars(&lang_ctx->main_id_table));
 
     ASTWriteIdTable(lang_ctx, fp);
 

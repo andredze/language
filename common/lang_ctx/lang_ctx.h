@@ -92,7 +92,8 @@ typedef enum LangErr
     LANG_FUNC_REDECLARATION,
     LANG_FUNC_NOT_DECLARED,
     LANG_FUNC_USED_AS_VAR,
-    LANG_WRONG_ARGS_COUNT
+    LANG_WRONG_ARGS_COUNT,
+    LANG_WRONG_AST_FORMAT
 
 } LangErr_t;
 
@@ -160,6 +161,8 @@ typedef struct LangCtx
     bool          assembling_args;
 
     bool          getting_function_params;
+
+    size_t        global_vars_count;
 
     bool          first_point;
 

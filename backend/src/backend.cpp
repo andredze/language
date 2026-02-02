@@ -1,4 +1,5 @@
 #include "backend.h"
+#include "lang_funcs.h"
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 
@@ -10,6 +11,12 @@
 LangErr_t AssembleProgram(LangCtx_t* lang_ctx)
 {
     assert(lang_ctx);
+
+    ASM_PRINT_(L"; push rbp for all global vars\n");
+    ASM_PRINT_(L"PUSH %zu\n", lang_ctx->global_vars_count);
+    ASM_PRINT_(L"POPR RGX\n");
+    ASM_PRINT_(L"PUSHR RGX\n");
+    ASM_PRINT_(L"POPR RHX\n\n");
 
     LangErr_t error = LANG_SUCCESS;
 
