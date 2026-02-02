@@ -3,6 +3,7 @@
 //——————————————————————————————————————————————————————————————————————————————————————————
 
 static void ASTWriteNode(LangCtx_t* lang_ctx, const TreeNode_t* node, FILE* fp, int rank);
+static void ASTWriteIdTable(LangCtx_t* lang_ctx, FILE* fp);
 
 //==========================================================================================
 
@@ -26,11 +27,53 @@ LangErr_t ASTWriteData(LangCtx_t* lang_ctx)
 
     ASTWriteNode(lang_ctx, lang_ctx->tree.dummy->right, fp, 0);
 
+    fwprintf(fp, L"\n\n");
+
+    ASTWriteIdTable(lang_ctx, fp);
+
     fclose(fp);
 
     WDPRINTF(L"База данных записана в файл: %s\n", data_file_path);
 
     return LANG_SUCCESS;
+}
+
+//==========================================================================================
+
+static void ASTWriteIdData(LangCtx_t* lang_ctx, IdData_t* id_data, FILE* fp);
+
+//——————————————————————————————————————————————————————————————————————————————————————————
+
+static void ASTWriteIdTable(LangCtx_t* lang_ctx, FILE* fp)
+{
+    assert(fp);
+    assert(lang_ctx);
+
+    IdTable_t* id_table = &lang_ctx->main_id_table;
+
+    for (size_t i = 0; i < id_table->size; i++)
+    {
+        if (id_table->data[i].type == ID_TYPE_FUNCTION)
+        {
+            ASTWriteIdData(lang_ctx, &(id_table->data[i]), fp);
+        }
+    }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————
+
+static void ASTWriteIdData(LangCtx_t* lang_ctx, IdData_t* id_data, FILE* fp)
+{
+    assert(lang_ctx);
+    assert(id_data);
+    assert(fp);
+
+    // name_index, name, memory_needed, n_params
+    fwprintf(fp, L"[%zu, \"%ls\", %zu, %zu]\n",
+                 id_data->name_index,
+                 lang_ctx->names_pool.data[id_data->name_index],
+                 id_data->memory_needed,
+                 id_data->n_params);
 }
 
 //==========================================================================================

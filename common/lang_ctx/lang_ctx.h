@@ -14,6 +14,8 @@
 
 typedef double Number_t;
 
+//——————————————————————————————————————————————————————————————————————————————————————————
+
 typedef enum IdType
 {
     ID_TYPE_UNKNOWN  = 0,
@@ -26,11 +28,15 @@ typedef enum IdType
 typedef struct IdData
 {
     size_t    name_index;
+
+    wchar_t*  name;
+
     IdType_t  type;
 
-    size_t    addr;
-
+    size_t    memory_needed;
     size_t    n_params;
+
+    int       addr;
 
 } IdData_t;
 
@@ -77,6 +83,8 @@ typedef enum LangErr
 
     LANG_PARSER_SYNTAX_ERROR,
     LANG_LEXER_SYNTAX_ERROR,
+
+    LAND_ID_TABLE_WRONG_INDEX,
 
     LANG_VAR_REDECLARATION,
     LANG_VAR_NOT_DECLARED,
@@ -132,12 +140,16 @@ typedef struct LangCtx
     size_t        cur_token_index; // for parser rename
 
     FILE*         output_file;
-#ifdef BACKEND
-    size_t        endif_labels_count;
-    size_t        while_labels_count;
+
+    bool          is_in_func;
+    int           in_func_vars_count;
 
     IdTable_t     main_id_table;
     IdTable_t     func_id_table;
+
+#ifdef BACKEND
+    size_t        endif_labels_count;
+    size_t        while_labels_count;
 
     bool          is_in_function;
 

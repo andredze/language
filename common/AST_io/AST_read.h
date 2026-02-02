@@ -19,7 +19,8 @@ LangErr_t ReadNodeData(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos, Token
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 
-const size_t MAX_BUFFER_LEN = 128;
+const size_t MAX_BUFFER_LEN     = 128;
+const size_t MAX_IDENTIFIER_LEN = 128;
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 

@@ -51,9 +51,15 @@ wchar_t*  LangGetIdName           (NamesPool_t* names_pool, Identifier_t index);
 
 LangErr_t   LangIdTableCtor       (IdTable_t* id_table);
 void        LangIdTableDtor       (IdTable_t* id_table);
-LangErr_t   LangIdTablePush       (LangCtx_t* lang_ctx, IdTable_t* id_table,
-                                   Identifier_t id, IdType_t type, size_t n_params);
+LangErr_t   LangIdTablePush       (IdTable_t* id_table, IdData_t* id_data);
+void        LangIdTableDump       (IdTable_t* id_table);
 
+LangErr_t   LangGetIdData                 (IdTable_t* id_table, size_t index, IdData_t* id_data);
+LangErr_t   LangFuncCallRightArgs         (LangCtx_t* lang_ctx, size_t func_id_index, int args_count);
+LangErr_t   LangSafePushIdTable           (LangCtx_t* lang_ctx, IdTable_t* id_table, IdData_t* id_data);
+
+LangErr_t   LangGetFuncIndex              (LangCtx_t* lang_ctx, Identifier_t id, size_t* func_id_index);
+bool        LangFuncWasDeclared           (LangCtx_t* lang_ctx, Identifier_t id);
 LangErr_t   LangCheckVariableIsNotFunction(IdTable_t* id_table, Identifier_t id);
 LangErr_t   LangIdTableGetAddress         (IdTable_t* id_table, Identifier_t id, int* addr);
 bool        LangGetIdInTable              (IdTable_t* id_table, Identifier_t id, size_t* id_index);

@@ -4,6 +4,7 @@
 
 static void SkipSpaces(wchar_t* buffer, ssize_t* pos);
 static int  SkipLetter(wchar_t* buffer, ssize_t* pos, wchar_t letter);
+static void ReadIdTable(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos);
 
 //——————————————————————————————————————————————————————————————————————————————————————————
 
@@ -44,11 +45,77 @@ LangErr_t ASTReadData(LangCtx_t* lang_ctx, char* ast_file_path)
         return LANG_TREE_ERROR;
     }
 
+    ReadIdTable(lang_ctx, buffer, &i);
+
     free(buffer);
 
     TREE_CALL_DUMP(lang_ctx, "DUMP AFTER TREE READ DATA %s", ast_file_path);
 
     return LANG_SUCCESS;
+}
+
+//==========================================================================================
+
+static bool ReadIdData(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos);
+
+//——————————————————————————————————————————————————————————————————————————————————————————
+
+static void ReadIdTable(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos)
+{
+    assert(lang_ctx);
+    assert(buffer);
+    assert(pos);
+
+    WDPRINTF(L"Reading Id Table\n");
+
+    bool got_data = false;
+
+    do
+    {
+        got_data = ReadIdData(lang_ctx, buffer, pos);
+    }
+    while (got_data);
+}
+
+//==========================================================================================
+
+static bool ReadIdData(LangCtx_t* lang_ctx, wchar_t* buffer, ssize_t* pos)
+{
+    assert(lang_ctx);
+    assert(buffer);
+    assert(pos);
+
+    IdData_t id_data = {};
+    int symbols_read = 0;
+
+    wchar_t id_buff[MAX_IDENTIFIER_LEN] = {};
+    int ret_value = 0;
+
+    if ((ret_value = swscanf(&buffer[*pos], L" [%zu, \"%[^\"]\", %zu, %zu]\n%n",
+                             &id_data.name_index,
+                             id_buff,
+                             &id_data.memory_needed,
+                             &id_data.n_params,
+                             &symbols_read)) != 4)
+    {
+        wprintf(L"ret_value = %d\n", ret_value);
+        // return false;
+    }
+
+    wprintf(L"id_buff = %ls\n", id_buff);
+
+    id_data.name = lang_ctx->names_pool.data[id_data.name_index];
+
+    LangIdTablePush(&lang_ctx->main_id_table, &id_data);
+
+    *pos = *pos + symbols_read;
+
+    if (buffer[*pos] == '\0')
+    {
+        return false;
+    }
+
+    return true;
 }
 
 //==========================================================================================
