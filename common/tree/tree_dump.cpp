@@ -81,8 +81,9 @@ static TreeErr_t TreeDumpMakeDirs(LangCtx_t* lang_ctx)
 
 static TreeErr_t TreeDumpSetDirs(LangCtx_t* lang_ctx)
 {
-    if (swprintf(lang_ctx->debug.log_dir, sizeof(lang_ctx->debug.log_dir), L"log/%ls",
-                 lang_ctx->debug.str_time) < 0)
+    // if (swprintf(lang_ctx->debug.log_dir, sizeof(lang_ctx->debug.log_dir), L"log/%ls",
+    //              lang_ctx->debug.str_time) < 0)
+    if (swprintf(lang_ctx->debug.log_dir, sizeof(lang_ctx->debug.log_dir), L"log") < 0)
     {
         WPRINTERR(L"Error with setting \"log_dir\"");
         return TREE_FILE_ERROR;
